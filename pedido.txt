@@ -1,16 +1,9 @@
 Pedido #1
 --------------------------------------------------
-1 x Pastel de R$5.5 = R$5.5
-2 x Pastel de R$5.5 = R$11
-3 x Pastel de R$5.5 = R$16.5
-4 x Pastel de R$5.5 = R$22
-5 x Pastel de R$5.5 = R$27.5
 6 x Pastel de R$5.5 = R$33
-7 x Pastel de R$5.5 = R$38.5
-8 x Pastel de R$5.5 = R$44
-9 x Pastel de R$5.5 = R$49.5
-10 x Pastel de R$5.5 = R$55
+2 x Bolo de R$6 = R$12
+3 x Pizza de R$10.5 = R$31.5
 Taxa de entrega = R$6.00
-Desconto de 5% = R$15.425
+Desconto de 10% = R$8.25
 --------------------------------------------------
-Total = R$308.5
+Total = R$74.25

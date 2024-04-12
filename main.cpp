@@ -12,7 +12,7 @@ int main()
 		float price;
 		int qtd;
 	};
-	int tam = 10;
+	int tam = 4;
 	product* pedido = new product[tam];
 
 	int count = 0;
@@ -38,42 +38,52 @@ int main()
 				product_price = 5.5;
 				break;
 			case 'b':
-				strcpy(product_name, "Pastel");
-				product_price = 5.5;
+				strcpy(product_name, "Bolo");
+				product_price = 6.0;
 				break;
 			case 'c':
-				strcpy(product_name, "Pastel");
-				product_price = 5.5;
+				strcpy(product_name, "Pizza");
+				product_price = 10.5;
 				break;
 			case 'd':
-				strcpy(product_name, "Pastel");
-				product_price = 5.5;
+				strcpy(product_name, "Suco");
+				product_price = 4.0;
 				break;
 			case 's': break;
 			default: cout << "OPÇÃO INVÁLIDA, TENTE NOVAMENTE";
 		}
 		if (option >= 97 && option <= 100)
 		{
-			strcpy(pedido[count].name, product_name);
-			pedido[count].price = product_price;
+			unsigned int product_qtd;
 
 			cout << "\nPedido\n"
 				<< "======\n"
-				<< pedido[count].name << "\nR$"
-				<< pedido[count].price << "\n"
+				<< product_name << "\nR$"
+				<< product_price << "\n"
 				<< "======\n"
 				<< "Quantidade: [_]\b\b";
-			cin >> pedido[count].qtd;
+			cin >> product_qtd;
+			for (int i = 0; i < count+1; i++)
+			{
+				if (i < count && count > 0 && !strcmp(pedido[i].name, product_name))
+				{
+					pedido[i].qtd += product_qtd;
+				}
+				else if (i == 0 || i < count) {
+					strcpy(pedido[count].name, product_name);
+					pedido[count].price = product_price;
+					pedido[count].qtd = product_qtd;
+					count++;
+					break;
+				}
+			}
 
 			cout << "\nRapiZinho\n"
 				<< "===========\n";
-			for (int i = 0; i < count+1; i++) {
+			for (int i = 0; i < count; i++) {
 				cout << pedido[i].qtd << " x " << pedido[i].name << " de R$" << pedido[i].price << " = R$" << pedido[i].price * pedido[i].qtd << "\n";
 			}
 			cout << "===========\n";
-
-
-			count++;
 		}
 	
 	} while (option != 's');
@@ -123,7 +133,7 @@ int main()
 		fout.open("pedido.txt");
 		fout << "Pedido #1"
 			 << "\n--------------------------------------------------\n";
-		for (int i = 0; i < tam; i++)
+		for (int i = 0; i < count; i++)
 		{
 				fout << pedido[i].qtd << " x " << pedido[i].name 
 					<< " de R$" << pedido[i].price << " = R$" 
@@ -134,13 +144,15 @@ int main()
 		switch (pay) {
 		case 'c':
 			fout << "Desconto de 5% = R$" << total * 0.05 << endl;
+			fout << "--------------------------------------------------\n";
+			fout << "Total = R$" << total * 0.95;
 			break;
 		default:
 			fout << "Desconto de 10% = R$" << total * 0.1 << endl;
+			fout << "--------------------------------------------------\n";
+			fout << "Total = R$" << total * 0.9;
 			break;
 		}
-		fout << "--------------------------------------------------\n";
-		fout << "Total = R$" << total;
 		fout.close();
 	}
 	delete[] pedido;
